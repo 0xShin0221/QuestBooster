@@ -31,7 +31,7 @@ import { userAtom } from '@/utils/atoms';
 
 import { useAuthenticate } from '@/utils/weavedb';
 
-export function WithSubnavigation() {
+export function Navigation() {
   const userObj = useAtomValue(userAtom);
   const walletAddress = userObj?.wallet;
   const { login, logout } = useAuthenticate();
@@ -107,7 +107,12 @@ export function WithSubnavigation() {
               }}
               bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
             >
-              DisConnect
+              {walletAddress.substring(0, 5) +
+                `...` +
+                walletAddress.substring(
+                  walletAddress,
+                  walletAddress.length - 5,
+                )}
             </Button>
           ) : (
             <Button

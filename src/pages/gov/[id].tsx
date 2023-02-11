@@ -1,5 +1,5 @@
 import { Item } from '@/components/Item';
-import { NavBar } from '@/components/NavBar';
+import { Navigation } from '@/components/NavBar';
 import { RawCard } from '@/components/RawCard';
 import { mockeDAOs } from '@/utils/mock';
 import { Divider, Grid, GridItem, Heading } from '@chakra-ui/react';
@@ -16,7 +16,7 @@ const Gov = () => {
   const govId = targetGov.id;
   return (
     <>
-      <NavBar />
+      <Navigation />
       <RawCard dao={targetGov} isShowStats={true} />
       <Heading as="h2" marginTop="8" mx={`12`}>
         Latest Quest Lists

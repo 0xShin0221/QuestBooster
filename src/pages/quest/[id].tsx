@@ -1,4 +1,4 @@
-import { NavBar } from '@/components/NavBar';
+import { Navigation } from '@/components/NavBar';
 import { QuestDetail } from '@/components/QuestDetail';
 import { RawCard } from '@/components/RawCard';
 import Thread from '@/components/Thread';
@@ -55,7 +55,7 @@ const Quest = () => {
 
   return (
     <>
-      <NavBar />
+      <Navigation />
       <RawCard dao={targetGov} isShowStats={false} />
       <QuestDetail item={targetItem} />
       <Thread />

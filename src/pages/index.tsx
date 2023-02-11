@@ -2,7 +2,7 @@ import Head from 'next/head';
 import { useSetUp } from '../utils/weavedb';
 import { useEffect, useState } from 'react';
 import { isNil, map } from 'ramda';
-import { WithSubnavigation } from '@/components/NavBar';
+import { Navigation } from '@/components/NavBar';
 import { Box, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '@/utils/atoms';
@@ -42,7 +42,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <WithSubnavigation />
+      <Navigation />
       {/* <NavBar /> */}
       {!user?.wallet && (
         <>
