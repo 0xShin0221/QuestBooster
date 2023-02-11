@@ -69,18 +69,19 @@ export function Navigation() {
           /> */}
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: `center`, md: `start` }}>
-          <Text
-            textAlign={useBreakpointValue({ base: `center`, md: `left` })}
-            fontFamily={`heading`}
-            fontSize={{ base: `xl`, md: `2xl` }}
-            color={useColorModeValue(`gray.800`, `white`)}
-            display="inline-block"
-            backgroundClip="text"
-            bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
-          >
-            Quest Booster
-          </Text>
-
+          <Link href="/">
+            <Text
+              textAlign={useBreakpointValue({ base: `center`, md: `left` })}
+              fontFamily={`heading`}
+              fontSize={{ base: `xl`, md: `2xl` }}
+              color={useColorModeValue(`gray.800`, `white`)}
+              display="inline-block"
+              backgroundClip="text"
+              bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
+            >
+              Quest Booster
+            </Text>
+          </Link>
           <Flex display={{ base: `none`, md: `flex` }} ml={10}>
             <DesktopNav />
           </Flex>
