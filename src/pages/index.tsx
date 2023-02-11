@@ -3,7 +3,15 @@ import { useSetUp } from '../utils/weavedb';
 import { useEffect, useState } from 'react';
 import { isNil, map } from 'ramda';
 import { Navigation } from '@/components/NavBar';
-import { Box, Divider, Flex, Grid, GridItem, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Divider,
+  Flex,
+  Grid,
+  GridItem,
+  Text,
+} from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '@/utils/atoms';
 import { useDAO } from '@/utils/useDAO';
@@ -11,6 +19,7 @@ import Hero from '@/components/Hero';
 import { DAO } from '@/types/atomState';
 import Card from '@/components/Card';
 import Features from '@/components/Features';
+import { UserCard } from '@/components/UserCard';
 
 export default function Home() {
   const user = useAtomValue(userAtom);
@@ -50,46 +59,50 @@ export default function Home() {
           <Features />
         </>
       )}
+      <Container maxW={`7xl`} backgroundColor={`black`} pb={12}>
+        {user?.wallet && (
+          <>
+            <UserCard user={user} isShowStats={true} />
+            <Text
+              p={4}
+              fontSize={`4xl`}
+              position={`relative`}
+              bgGradient="linear(to-r, pink.600, blue.600, blue.600)"
+              backgroundClip="text"
+              _after={{
+                content: `''`,
+                width: `full`,
+                height: `30%`,
+                position: `absolute`,
+                bottom: 1,
+                left: 0,
+                bg: `red.400`,
+                zIndex: -1,
+              }}
+            >
+              HasVoted right DAOs
+            </Text>
+          </>
+        )}
 
-      {user?.wallet && (
-        <>
-          <Text
-            fontSize={`4xl`}
-            position={`relative`}
-            _after={{
-              content: `''`,
-              width: `full`,
-              height: `30%`,
-              position: `absolute`,
-              bottom: 1,
-              left: 0,
-              bg: `red.400`,
-              zIndex: -1,
-            }}
-          >
-            HasVoted right DAOs
-          </Text>
-
-          <Divider marginTop="5" />
-        </>
-      )}
-      <Grid
-        templateColumns={{
-          base: `repeat(4, 1fr)`,
-          sm: `repeat(3,1fr)`,
-          md: `repeat(2,1fr)`,
-        }}
-        gap={8}
-        mx={12}
-      >
-        {user?.wallet &&
-          user?.joinedDAOs?.length !== 0 &&
-          user?.joinedDAOs?.map((v: DAO, i) => (
-            <GridItem w="100%" h="500" bg="blue.500" key={i}>
-              <Card dao={v} />
-            </GridItem>
-          ))}
-      </Grid>
+        <Grid
+          templateColumns={{
+            base: `repeat(4, 1fr)`,
+            sm: `repeat(3,1fr)`,
+            md: `repeat(2,1fr)`,
+          }}
+          gap={4}
+          mx={12}
+        >
+          {user?.wallet &&
+            user?.joinedDAOs?.length !== 0 &&
+            user?.joinedDAOs?.map((v: DAO, i) => (
+              <GridItem w="100%" key={i}>
+                <Card dao={v} />
+              </GridItem>
+            ))}
+        </Grid>
+      </Container>
     </>
   );
 }

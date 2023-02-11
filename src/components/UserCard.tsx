@@ -4,21 +4,18 @@ import {
   Heading,
   Image,
   Text,
-  Divider,
   HStack,
   Tag,
   SpaceProps,
-  useColorModeValue,
   Container,
   Grid,
-  Button,
   Flex,
+  Stack,
 } from '@chakra-ui/react';
-import { DAO } from '@/types/atomState';
+import { UserState } from '@/types/atomState';
 import { StatsCard } from './Stat';
 import { BsFillFileEarmarkPostFill, BsPerson } from 'react-icons/bs';
 import { GiVote } from 'react-icons/gi';
-import router from 'next/router';
 
 interface ITags {
   tags: Array<string>;
@@ -59,8 +56,9 @@ export const Contents: React.FC<ContentsProps> = (props) => {
   );
 };
 
-export const RawCard = (props: { dao: DAO; isShowStats: boolean }) => {
-  const { dao, isShowStats } = props;
+export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
+  const { user, isShowStats } = props;
+  const walletAddress = user?.wallet;
   return (
     <Container maxW={`7xl`} p="12" backgroundColor={`black`}>
       <Box
@@ -87,46 +85,28 @@ export const RawCard = (props: { dao: DAO; isShowStats: boolean }) => {
                 <Image
                   borderRadius="full"
                   boxSize="80px"
-                  src={dao.iconImage}
-                  alt={`Avatar of ${dao.name}`}
+                  //   src={user.userImage}
+                  src="https://100k-faces.glitch.me/random-image"
+                  alt={`Avatar of ${user.wallet}`}
                 />
-                <Text
-                  fontWeight="medium"
-                  color={useColorModeValue(`whiteAlpha.800`, `gray.200`)}
-                >
-                  {dao.name}
-                </Text>
+                <Stack>
+                  <Heading fontSize={`2xl`} fontFamily={`body`}>
+                    CCBean
+                  </Heading>
+                  <Text fontWeight={600} color={`gray.500`} mb={4}>
+                    {walletAddress &&
+                      walletAddress.substring(0, 5) +
+                        `...` +
+                        walletAddress.substring(
+                          walletAddress,
+                          walletAddress.length - 5,
+                        )}
+                  </Text>
+                </Stack>
               </HStack>
-
-              <Button
-                as={`a`}
-                onClick={() => router.push(`${dao.tallyUrl}`)}
-                my={8}
-                fontSize={`sm`}
-                rounded={`full`}
-                bg={`blue.400`}
-                color={`white`}
-                boxShadow={`0px 1px 25px -5px rgb(66 153 225 / 48%), 0 10px 10px -5px rgb(66 153 225 / 43%)`}
-                _hover={{
-                  bg: `blue.500`,
-                }}
-                _focus={{
-                  bg: `blue.500`,
-                }}
-              >
-                View on Tally.xyz
-              </Button>
             </Flex>
           </Heading>
-          <Text
-            as="p"
-            marginTop="2"
-            color={useColorModeValue(`gray`, `gray.200`)}
-            fontSize="lg"
-          >
-            {dao.description}
-          </Text>
-          <Tags tags={[`Goerli`]} marginTop={`4`} />
+          {/* <Tags tags={[`Goerli`]} marginTop={`4`} /> */}
           {isShowStats && (
             <Grid
               templateColumns={{
@@ -139,17 +119,17 @@ export const RawCard = (props: { dao: DAO; isShowStats: boolean }) => {
             >
               <StatsCard
                 title={`Holders`}
-                stat={dao.holdersCount}
+                stat={user.joinedDAOs?.length}
                 icon={<BsPerson size={`3em`} />}
               />
               <StatsCard
                 title={`Proposals`}
-                stat={dao.proposalsCount}
+                stat={33}
                 icon={<BsFillFileEarmarkPostFill size={`3em`} />}
               />
               <StatsCard
                 title={`Voters`}
-                stat={dao.votersCount}
+                stat={41}
                 icon={<GiVote size={`3em`} />}
               />
             </Grid>
