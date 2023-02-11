@@ -9,7 +9,6 @@ export const NavBar = () => {
   const userObj = useAtomValue(userAtom);
   const walletAddress = userObj?.wallet;
   const { login, logout } = useAuthenticate();
-  console.log(`userObj`, userObj);
   return (
     <Flex p={3} position="fixed" w="100%" sx={{ top: 0, left: 0 }}>
       <Box flex={1} />
