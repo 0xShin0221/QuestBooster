@@ -12,13 +12,13 @@ export const NoQuestIdea: React.FC<INoQuestIdea> = (props) => {
     console.log(`handleAddQuest`);
   };
   return (
-    <Box textAlign="center" my={4}>
+    <Box textAlign="center" my={4} pb={8}>
       <Heading
         display="inline-block"
         as="h2"
         size="2xl"
         my={4}
-        bgGradient="linear(to-r, teal.400, teal.600)"
+        bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
         backgroundClip="text"
       >
         {props.title}
@@ -32,7 +32,7 @@ export const NoQuestIdea: React.FC<INoQuestIdea> = (props) => {
 
       <Button
         colorScheme="teal"
-        bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
+        bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
         color="white"
         variant="solid"
         onClick={() => handleAddQuest()}

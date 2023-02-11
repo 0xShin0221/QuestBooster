@@ -1,3 +1,4 @@
+import { useAuthenticate } from '@/utils/weavedb';
 import {
   Container,
   Stack,
@@ -15,8 +16,9 @@ import {
 } from '@chakra-ui/react';
 
 export default function Hero() {
+  const { login } = useAuthenticate();
   return (
-    <Container maxW={`7xl`}>
+    <Container maxW={`7xl`} backgroundColor={`black`}>
       <Stack
         align={`center`}
         spacing={{ base: 8, md: 10 }}
@@ -32,6 +34,7 @@ export default function Hero() {
             <Text
               as={`span`}
               position={`relative`}
+              color={`gray.400`}
               _after={{
                 content: `''`,
                 width: `full`,
@@ -39,7 +42,7 @@ export default function Hero() {
                 position: `absolute`,
                 bottom: 1,
                 left: 0,
-                bg: `red.400`,
+                bg: `gray.400`,
                 zIndex: -1,
               }}
             >
@@ -48,7 +51,11 @@ export default function Hero() {
 
             <br />
 
-            <Text as={`span`} color={`red.400`}>
+            <Text
+              as={`span`}
+              bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
+              backgroundClip="text"
+            >
               For DAO onboarding
             </Text>
           </Heading>
@@ -65,13 +72,18 @@ export default function Hero() {
             <Button
               rounded={`full`}
               size={`lg`}
+              bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
               fontWeight={`normal`}
               px={6}
-              colorScheme={`red`}
-              bg={`red.400`}
-              _hover={{ bg: `red.500` }}
+              color={`white`}
+              // colorScheme={`red`}
+              // bg={`red.400`}
+              _hover={{ bg: `blue.500` }}
+              onClick={() => {
+                login();
+              }}
             >
-              Get started
+              Connect
             </Button>
             <Button
               rounded={`full`}
