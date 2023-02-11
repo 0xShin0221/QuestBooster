@@ -3,9 +3,8 @@ import lf from 'localforage';
 import { ethers } from 'ethers';
 import { isNil } from 'ramda';
 import { useSetAtom, useAtomValue, useAtom } from 'jotai';
-import { userAtom, localDBAtom } from '@/utils/atoms';
+import { userAtom, weaveDBAtom, weaveDBCreateQuest } from '@/utils/atoms';
 
-// let db;
 const contractTxId = process.env.NEXT_PUBLIC_WEAVEDB_CONTRACT_TX_ID;
 if (!contractTxId)
   throw new Error(
@@ -13,7 +12,7 @@ if (!contractTxId)
   );
 
 export const useSetUp = () => {
-  const setDB = useSetAtom(localDBAtom);
+  const setDB = useSetAtom(weaveDBAtom);
   const setupWeaveDB = async () => {
     window.Buffer = Buffer;
     const weaveDB = new SDK({
@@ -31,20 +30,32 @@ export const useSetUp = () => {
 
 export const useDAOQuestThread = () => {
   const user = useAtomValue(userAtom);
-  const [localDB, setLocalDB] = useAtom(localDBAtom);
+  const [localDB, setLocalDB] = useAtom(weaveDBAtom);
+  const newQuest = useAtomValue(weaveDBCreateQuest);
 
-  const useGetTasks = async () => {
+  const getTasks = async () => {
     if (localDB.isSet) {
-      console.log(await localDB.db?.getInfo());
-      console.log(
-        'useGetTasks',
-        await localDB.db.cget('tasks', ['date', 'desc']),
-      );
       setLocalDB({
         ...localDB,
-        tasks: await localDB.db.cget('tasks', ['date', 'desc']),
+        quests: await localDB.db.cget('tasks', ['date', 'desc']),
       });
     }
+  };
+
+  const getQuests = async () => {
+    if (localDB.isSet) {
+      setLocalDB({
+        ...localDB,
+        tasks: await localDB.db.cget('quests', [
+          'created_at_unix_timestamp',
+          'desc',
+        ]),
+      });
+    }
+  };
+
+  const addQuest = async (quest) => {
+    console.log('addQuest');
   };
 
   const addTask = async (task) => {
@@ -63,10 +74,8 @@ export const useDAOQuestThread = () => {
     // await getTasks();
   };
 
-  const useCheckUser = async () => {
-    // const setUser = useSetAtom(userAtom);
+  const checkUser = async () => {
     const wallet_address = await lf.getItem(`temp_address:current`);
-    // console.log('wallet_address', wallet_address, 'user', user, 'user.wallet');
     if (!isNil(wallet_address)) {
       const identity = await lf.getItem(
         `temp_address:${contractTxId}:${wallet_address}`,
@@ -77,14 +86,15 @@ export const useDAOQuestThread = () => {
           privateKey: identity.privateKey,
         });
     }
+    return;
   };
 
-  return { useGetTasks, useCheckUser, addTask };
+  return { getTasks, checkUser, addTask, getQuests };
 };
 
 export const useAuthenticate = () => {
   const setUser = useSetAtom(userAtom);
-  const localDB = useAtomValue(localDBAtom);
+  const localDB = useAtomValue(weaveDBAtom);
   const db = localDB.db;
   const login = async () => {
     const provider = new ethers.providers.Web3Provider(window.ethereum, 'any');

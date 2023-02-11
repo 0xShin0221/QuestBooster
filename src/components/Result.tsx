@@ -1,11 +1,16 @@
+import { useDAOQuestThread } from '@/utils/weavedb';
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
-interface INotFoundWithText {
+interface INoQuestIdea {
   title: string;
   description: string;
   buttonText: string;
 }
-export const NotFountWithText: React.FC<INotFoundWithText> = (props) => {
+export const NoQuestIdea: React.FC<INoQuestIdea> = (props) => {
+  const { addQuest } = useDAOQuestThread();
+  const handleAddQuest = () => {
+    console.log(`handleAddQuest`);
+  };
   return (
     <Box textAlign="center" my={4}>
       <Heading
@@ -30,6 +35,7 @@ export const NotFountWithText: React.FC<INotFoundWithText> = (props) => {
         bgGradient="linear(to-r, teal.400, teal.500, teal.600)"
         color="white"
         variant="solid"
+        onClick={() => handleAddQuest()}
       >
         {props.buttonText}
       </Button>

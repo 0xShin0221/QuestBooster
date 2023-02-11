@@ -22,6 +22,21 @@ export type UserState = {
   userImage: string | undefined;
 };
 
+export type WeaveDBState = {
+  isSet: boolean;
+  db: any;
+  tasks: any;
+  quests: any;
+};
+
+// type QuestItem = {
+//   title: string;
+//   created_at_unix_timestamp: string;
+//   user_address: string;
+//   status: string;
+//   description: string;
+// };
+
 export type DAOQuestItem = {
   id: string;
   author: UserState;
@@ -40,3 +55,15 @@ export type DAOQuestItem = {
 };
 
 type DAOQuestItemStatus = 'open' | 'in-progress' | 'completed' | 'rejected';
+
+export type QuestCreateFormState = {
+  title: string;
+  description: string;
+  created_at_unix_timestamp: number;
+  user_address: string;
+  status: DAOQuestItemStatus;
+  total_participants: number;
+  reward_token_address: string;
+  start_unix_timestamp: number;
+  end_unix_timestamp: number;
+};

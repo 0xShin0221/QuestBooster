@@ -10,11 +10,11 @@ import {
 } from '@chakra-ui/react';
 import { Field, Form, Formik } from 'formik';
 import { useAtom } from 'jotai';
-import { localDBAtom } from '@/utils/atoms';
+import { weaveDBAtom } from '@/utils/atoms';
 import { useEffect } from 'react';
 
 export const InputForm = () => {
-  const [localDB, setLocalDB] = useAtom(localDBAtom);
+  const [localDB, setLocalDB] = useAtom(weaveDBAtom);
   const { addTask } = useDAOQuestThread();
   function validateName(value: string) {
     let error;

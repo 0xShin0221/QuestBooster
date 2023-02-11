@@ -4,7 +4,7 @@ import { RawCard } from '@/components/RawCard';
 import { mockeDAOs } from '@/utils/mock';
 import { Divider, Grid, GridItem, Heading } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { NotFountWithText } from '@/components/Result';
+import { NoQuestIdea } from '@/components/Result';
 
 const Gov = () => {
   const router = useRouter();
@@ -30,7 +30,7 @@ const Gov = () => {
             </GridItem>
           ))
         ) : (
-          <NotFountWithText
+          <NoQuestIdea
             title="No Quest Ideas"
             description="There are no quest ideas yet. Be the first to create one!"
             buttonText="Create new quest idea"

@@ -3,22 +3,20 @@ import { QuestDetail } from '@/components/QuestDetail';
 import { RawCard } from '@/components/RawCard';
 import Thread from '@/components/Thread';
 import { DAOQuestItem } from '@/types/atomState';
-import { localDBAtom, userAtom } from '@/utils/atoms';
+import { weaveDBAtom, userAtom } from '@/utils/atoms';
 import { mockeDAOs } from '@/utils/mock';
 import { nounsDAOQuestItems } from '@/utils/mock-quest';
 import { useSetUp, useDAOQuestThread } from '@/utils/weavedb';
-import { Button, Container } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import { useRouter } from 'next/router';
-import { isNil } from 'ramda';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const Quest = () => {
   const router = useRouter();
   const { id, item } = router.query;
   const user = useAtomValue(userAtom);
-  const localDB = useAtomValue(localDBAtom);
-  const { useCheckUser, useGetTasks, addTask } = useDAOQuestThread();
+  const localDB = useAtomValue(weaveDBAtom);
+  const { checkUser, getTasks, addTask } = useDAOQuestThread();
   const { setupWeaveDB } = useSetUp();
   // useCheckUser(isNil);
   console.log(router.query);
@@ -26,14 +24,17 @@ const Quest = () => {
   const targetItem: DAOQuestItem | undefined = nounsDAOQuestItems.find(
     (quest) => quest.id === item,
   );
-  const setUp = useCheckUser();
-  const getTasks = useGetTasks();
 
   useEffect(() => {
     setupWeaveDB();
-    setUp;
-    getTasks;
-  }, []);
+    checkUser();
+  }, [user?.address]);
+
+  useEffect(() => {
+    if (localDB.isSet) {
+      getTasks();
+    }
+  }, [localDB.isSet]);
 
   // console.log(`useGetTasks`, useGetTasks());
   if (!targetGov || !targetItem) return <div>Not Found</div>;
