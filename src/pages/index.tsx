@@ -20,6 +20,7 @@ import { DAO } from '@/types/atomState';
 import Card from '@/components/Card';
 import Features from '@/components/Features';
 import { UserCard } from '@/components/UserCard';
+import Newsletter from '@/components/Newsletter';
 
 export default function Home() {
   const user = useAtomValue(userAtom);
@@ -46,7 +47,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Quest Booster</title>
+        <title>🚀Quest Booster🚀</title>
         <meta name="description" content="Quest Booster" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
@@ -57,31 +58,13 @@ export default function Home() {
         <>
           <Hero />
           <Features />
+          <Newsletter />
         </>
       )}
       <Container maxW={`7xl`} backgroundColor={`black`} pb={12}>
         {user?.wallet && (
           <>
             <UserCard user={user} isShowStats={true} />
-            <Text
-              p={4}
-              fontSize={`4xl`}
-              position={`relative`}
-              bgGradient="linear(to-r, pink.600, blue.600, blue.600)"
-              backgroundClip="text"
-              _after={{
-                content: `''`,
-                width: `full`,
-                height: `30%`,
-                position: `absolute`,
-                bottom: 1,
-                left: 0,
-                bg: `red.400`,
-                zIndex: -1,
-              }}
-            >
-              HasVoted right DAOs
-            </Text>
           </>
         )}
 

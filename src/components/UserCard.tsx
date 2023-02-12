@@ -17,23 +17,23 @@ import { StatsCard } from './Stat';
 import { BsFillFileEarmarkPostFill, BsPerson } from 'react-icons/bs';
 import { GiVote } from 'react-icons/gi';
 
-interface ITags {
-  tags: Array<string>;
-  marginTop?: SpaceProps['marginTop'];
-}
-const Tags: React.FC<ITags> = (props) => {
-  return (
-    <HStack spacing={2} marginTop={props.marginTop}>
-      {props.tags.map((tag) => {
-        return (
-          <Tag size={`md`} variant="solid" colorScheme="gray" key={tag}>
-            {tag}
-          </Tag>
-        );
-      })}
-    </HStack>
-  );
-};
+// interface ITags {
+//   tags: Array<string>;
+//   marginTop?: SpaceProps['marginTop'];
+// }
+// const Tags: React.FC<ITags> = (props) => {
+//   return (
+//     <HStack spacing={2} marginTop={props.marginTop}>
+//       {props.tags.map((tag) => {
+//         return (
+//           <Tag size={`md`} variant="solid" colorScheme="gray" key={tag}>
+//             {tag}
+//           </Tag>
+//         );
+//       })}
+//     </HStack>
+//   );
+// };
 
 interface ContentsProps {
   date: Date;
@@ -91,7 +91,7 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
                 />
                 <Stack>
                   <Heading fontSize={`2xl`} fontFamily={`body`}>
-                    CCBean
+                    CCBean.eth
                   </Heading>
                   <Text fontWeight={600} color={`gray.500`} mb={4}>
                     {walletAddress &&
@@ -118,17 +118,17 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
               gap={{ base: `8`, sm: `12`, md: `16` }}
             >
               <StatsCard
-                title={`Holders`}
+                title={`Has Votes`}
                 stat={user.joinedDAOs?.length}
                 icon={<BsPerson size={`3em`} />}
               />
               <StatsCard
-                title={`Proposals`}
+                title={`Proposals Created`}
                 stat={33}
                 icon={<BsFillFileEarmarkPostFill size={`3em`} />}
               />
               <StatsCard
-                title={`Voters`}
+                title={`Received Delegations`}
                 stat={41}
                 icon={<GiVote size={`3em`} />}
               />
@@ -136,6 +136,25 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
           )}
         </Box>
       </Box>
+      <Text
+        pt={8}
+        fontSize={`4xl`}
+        position={`relative`}
+        bgGradient="linear(to-r, pink.600, blue.600, blue.600)"
+        backgroundClip="text"
+        _after={{
+          content: `''`,
+          width: `full`,
+          height: `30%`,
+          position: `absolute`,
+          bottom: 1,
+          left: 0,
+          bg: `red.400`,
+          zIndex: -1,
+        }}
+      >
+        HasVoted right DAOs
+      </Text>
     </Container>
   );
 };

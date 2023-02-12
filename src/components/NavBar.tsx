@@ -2,7 +2,6 @@ import {
   Box,
   Flex,
   Text,
-  IconButton,
   Button,
   Stack,
   Collapse,
@@ -14,7 +13,6 @@ import {
   useColorModeValue,
   useBreakpointValue,
   useDisclosure,
-  Heading,
 } from '@chakra-ui/react';
 // import {
 //   HamburgerIcon,
@@ -22,9 +20,9 @@ import {
 //   ChevronDownIcon,
 //   ChevronRightIcon,
 // } from '@chakra-ui/icons';
-import { GiHamburgerMenu } from 'react-icons/gi';
+
 import { BsChevronDoubleRight, BsChevronDown } from 'react-icons/bs';
-import { AiOutlineClose } from 'react-icons/ai';
+
 import { isNil } from 'ramda';
 import { useAtomValue } from 'jotai';
 import { userAtom } from '@/utils/atoms';
@@ -35,7 +33,7 @@ export function Navigation() {
   const userObj = useAtomValue(userAtom);
   const walletAddress = userObj?.wallet;
   const { login, logout } = useAuthenticate();
-  const { isOpen, onToggle } = useDisclosure();
+  const { isOpen } = useDisclosure();
 
   return (
     <Box>
@@ -79,7 +77,7 @@ export function Navigation() {
               backgroundClip="text"
               bgGradient="linear(to-r, blue.300, blue.600, pink.600)"
             >
-              Quest Booster
+              Quest Booster 🚀
             </Text>
           </Link>
           <Flex display={{ base: `none`, md: `flex` }} ml={10}>
@@ -229,20 +227,6 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   );
 };
 
-const MobileNav = () => {
-  return (
-    <Stack
-      bg={useColorModeValue(`white`, `gray.800`)}
-      p={4}
-      display={{ md: `none` }}
-    >
-      {NAV_ITEMS.map((navItem) => (
-        <MobileNavItem key={navItem.label} {...navItem} />
-      ))}
-    </Stack>
-  );
-};
-
 const MobileNavItem = ({ label, children, href }: NavItem) => {
   const { isOpen, onToggle } = useDisclosure();
 
@@ -343,3 +327,16 @@ const NAV_ITEMS: Array<NavItem> = [
   //   href: '#',
   // },
 ];
+const MobileNav = () => {
+  return (
+    <Stack
+      bg={useColorModeValue(`white`, `gray.800`)}
+      p={4}
+      display={{ md: `none` }}
+    >
+      {NAV_ITEMS.map((navItem) => (
+        <MobileNavItem key={navItem.label} {...navItem} />
+      ))}
+    </Stack>
+  );
+};
