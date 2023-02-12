@@ -1,4 +1,4 @@
-import { useDAOQuestThread } from '@/utils/weavedb';
+// import { useDAOQuestThread } from '@/utils/weavedb';
 import { Box, Button, Heading, Text } from '@chakra-ui/react';
 
 interface INoQuestIdea {
@@ -7,7 +7,7 @@ interface INoQuestIdea {
   buttonText: string;
 }
 export const NoQuestIdea: React.FC<INoQuestIdea> = (props) => {
-  const { addQuest } = useDAOQuestThread();
+  // const { addQuest } = useDAOQuestThread();
   const handleAddQuest = () => {
     console.log(`handleAddQuest`);
   };

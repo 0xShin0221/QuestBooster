@@ -1,15 +1,19 @@
 import {
   Avatar,
   Box,
+  Button,
   chakra,
-  Container,
   Flex,
+  FormControl,
+  FormHelperText,
+  FormLabel,
   Icon,
+  Input,
   SimpleGrid,
   Spacer,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { InputForm } from './Form';
+// import { InputForm } from './Form';
 
 const testimonials = [
   {
@@ -159,7 +163,23 @@ export default function Thread() {
         ))}
       </SimpleGrid>
       <Box>
-        <InputForm />
+        {/* <InputForm /> */}
+        <FormControl>
+          <FormLabel>Message</FormLabel>
+          <Input type="text" />
+          <FormHelperText>Input your quest idea</FormHelperText>
+        </FormControl>
+        <Button
+          mt={4}
+          colorScheme="teal"
+          // isLoading={props.isSubmitting}
+          type="submit"
+          onClick={() => {
+            console.log(`weavedb submit`);
+          }}
+        >
+          Submit
+        </Button>
       </Box>
     </Flex>
   );

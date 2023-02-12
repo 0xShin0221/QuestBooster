@@ -28,7 +28,7 @@ const Quest = () => {
   useEffect(() => {
     setupWeaveDB();
     checkUser();
-  }, [user?.address]);
+  }, [user?.wallet]);
 
   useEffect(() => {
     if (localDB.isSet) {

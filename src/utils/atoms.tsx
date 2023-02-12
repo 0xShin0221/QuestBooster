@@ -8,8 +8,10 @@ import { atom } from 'jotai';
 export const userAtom = atom<UserState>({
   wallet: null,
   publicKey: null,
-  joinedDAOs: null,
+  joinedDAOs: [],
   userImage: undefined,
+  proposalsCount: 0,
+  votesCount: 0,
 });
 
 export const weaveDBAtom = atom<WeaveDBState>({

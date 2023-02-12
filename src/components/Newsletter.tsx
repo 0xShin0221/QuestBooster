@@ -13,7 +13,7 @@ import {
 import { AiFillCheckCircle } from 'react-icons/ai';
 
 export default function Newsletter() {
-  const [email, setEmail] = useState();
+  const [email, setEmail] = useState<string>();
   const [state, setState] = useState<`initial` | `submitting` | `success`>(
     `initial`,
   );
@@ -32,7 +32,7 @@ export default function Newsletter() {
         boxShadow={`xl`}
         rounded={`lg`}
         p={6}
-        direction={`column`}
+        // direction={`column`}
       >
         <Heading
           as={`h2`}

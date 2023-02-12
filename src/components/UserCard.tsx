@@ -98,7 +98,7 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
                       walletAddress.substring(0, 5) +
                         `...` +
                         walletAddress.substring(
-                          walletAddress,
+                          walletAddress.length,
                           walletAddress.length - 5,
                         )}
                   </Text>
@@ -119,7 +119,7 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
             >
               <StatsCard
                 title={`Has Votes`}
-                stat={user.joinedDAOs?.length}
+                stat={user?.joinedDAOs?.length}
                 icon={<BsPerson size={`3em`} />}
               />
               <StatsCard

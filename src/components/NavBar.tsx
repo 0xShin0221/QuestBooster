@@ -109,7 +109,7 @@ export function Navigation() {
               {walletAddress.substring(0, 5) +
                 `...` +
                 walletAddress.substring(
-                  walletAddress,
+                  walletAddress.length,
                   walletAddress.length - 5,
                 )}
             </Button>
