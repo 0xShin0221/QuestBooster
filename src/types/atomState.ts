@@ -19,8 +19,8 @@ export type UserState = {
   wallet: string | null;
   publicKey: string | null;
   joinedDAOs: DAO[];
-  proposalsCount: number;
-  votesCount: number;
+  proposalsCount?: number;
+  votesCount?: number;
   userImage: string | undefined;
 };
 
