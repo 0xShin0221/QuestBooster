@@ -50,7 +50,7 @@ export const QuestDetail: React.FC<QuestDetailProps> = (props) => {
   return (
     <>
       <Container
-        maxW={`7xl`}
+        maxW={`inherit`}
         p={8}
         backgroundColor={`gray.100`}
         backdropBlur={`2xl`}

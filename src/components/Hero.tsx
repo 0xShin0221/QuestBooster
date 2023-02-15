@@ -43,7 +43,7 @@ export const Blob = (props: IconProps) => {
 export default function Hero() {
   const { login } = useAuthenticate();
   return (
-    <Container maxW={`7xl`} backgroundColor={`black`}>
+    <Container maxW={`inherit`} backgroundColor={`black`}>
       <Stack
         align={`center`}
         spacing={{ base: 8, md: 10 }}

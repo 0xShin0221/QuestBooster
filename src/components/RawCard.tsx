@@ -62,7 +62,7 @@ export const Contents: React.FC<ContentsProps> = (props) => {
 export const RawCard = (props: { dao: DAO; isShowStats: boolean }) => {
   const { dao, isShowStats } = props;
   return (
-    <Container maxW={`7xl`} p="12" backgroundColor={`black`}>
+    <Container maxW={`inherit`} p="12" backgroundColor={`black`}>
       <Box
         marginTop={{ base: `1`, sm: `5` }}
         display="flex"

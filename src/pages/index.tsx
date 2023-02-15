@@ -61,7 +61,7 @@ export default function Home() {
           <Newsletter />
         </>
       )}
-      <Container maxW={`7xl`} backgroundColor={`black`} pb={12}>
+      <Container maxW={`inherit`} backgroundColor={`black`} pb={12}>
         {user?.wallet && (
           <>
             <UserCard user={user} isShowStats={true} />

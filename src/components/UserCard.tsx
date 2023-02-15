@@ -60,7 +60,7 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
   const { user, isShowStats } = props;
   const walletAddress = user?.wallet;
   return (
-    <Container maxW={`7xl`} p="12" backgroundColor={`black`}>
+    <Container maxW={`inherit`} p="12" backgroundColor={`black`}>
       <Box
         marginTop={{ base: `1`, sm: `5` }}
         display="flex"
@@ -119,7 +119,7 @@ export const UserCard = (props: { user: UserState; isShowStats: boolean }) => {
             >
               <StatsCard
                 title={`Has Votes`}
-                stat={user?.joinedDAOs?.length}
+                stat={user.joinedDAOs?.length}
                 icon={<BsPerson size={`3em`} />}
               />
               <StatsCard

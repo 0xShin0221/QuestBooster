@@ -52,7 +52,7 @@ const featureList = [
 
 export default function Features() {
   return (
-    <Container maxW={`7xl`} backgroundColor={`white`} p={4}>
+    <Container maxW={`inherit`} backgroundColor={`white`} p={4}>
       <Box p={4}>
         <Stack spacing={4} as={Container} maxW={`3xl`} textAlign={`center`}>
           <Heading fontSize={`3xl`}>How it works</Heading>
